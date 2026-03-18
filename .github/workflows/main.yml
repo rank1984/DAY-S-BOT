@@ -1,28 +1,27 @@
-name: Trading Bot
+name: 📈 Trading Bot – Daily Signals
 
 on:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: "35 14 * * 1-5"   # 16:35 🇮🇱 פתיחת שוק
+    - cron: "00 15 * * 1-5"   # 17:00 🇮🇱
+    - cron: "30 15 * * 1-5"   # 17:30 🇮🇱
+    - cron: "00 17 * * 1-5"   # 19:00 🇮🇱
+    - cron: "00 19 * * 1-5"   # 21:00 🇮🇱
   workflow_dispatch:
 
 jobs:
-  run-bot:
+  scan:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
-      - name: Install packages
-        run: pip install yfinance ta requests
-
-      - name: Run bot
-        run: python bot.py
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: 🤖 Run bot
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python bot.py
