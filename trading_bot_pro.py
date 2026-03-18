@@ -27,12 +27,12 @@ ENTRY_ABOVE    = 0.01   # כניסה 1% מעל מחיר שוק (breakout)
 
 MIN_PRICE      = 1.5
 MAX_PRICE      = 40.0
-MIN_GAP_PCT    = 3.0
+MIN_GAP_PCT    = 2.0
 MIN_VOLUME     = 500_000
-VOL_SPIKE_MIN  = 1.5
+VOL_SPIKE_MIN  = 1.2
 RSI_MIN        = 45
 RSI_MAX        = 82
-MIN_SCORE      = 55
+MIN_SCORE      = 45
 
 TICKERS = [
     "SOFI","UPST","AFRM","OPEN","HOOD",
