@@ -2,7 +2,7 @@ name: Trading Bot
 
 on:
   schedule:
-    - cron: '*/3 * * * *'  # כל 3 דקות
+    - cron: '*/3 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Pull code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install libraries
+      - name: Install packages
         run: pip install yfinance ta requests
 
       - name: Run bot
